@@ -36,6 +36,10 @@ namespace ED2_LABFINAL
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseHsts();
+            }
 
             app.UseHttpsRedirection();
 

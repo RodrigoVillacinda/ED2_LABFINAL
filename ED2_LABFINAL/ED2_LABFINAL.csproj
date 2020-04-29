@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Folder Include="Implementation\List\" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>

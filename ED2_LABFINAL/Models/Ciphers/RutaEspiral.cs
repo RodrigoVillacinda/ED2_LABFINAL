@@ -11,6 +11,7 @@ namespace ED2_LABFINAL.Models.Ciphers
         public int m;
         public int n;
         public string Texto;
+        public string TextoAux;
         public List<char> ListCifrado = new List<char>();
         public char[,] matriz;
         public List<char> ListaTexto = new List<char>();
@@ -44,17 +45,21 @@ namespace ED2_LABFINAL.Models.Ciphers
         {
             string descifrado = "";
             matriz = new char[m, m];
+            char[,] matrizAux = new char[m, m]; 
             ListaTexto = Texto.ToArray().ToList();
 
-            llenarmatrizcaracol(matriz, m, m);
+           
 
             for (int i = 0; i < m; i++)
             {
                 for (int j = 0; j < m; j++)
                 {
-                    ListCifrado.Add(matriz[j, i]);
+                    matriz[i, j] = ListaTexto.ElementAt(0);
+                    ListaTexto.RemoveAt(0);
+                    //ListCifrado.Add(matriz[j, i]);
                 }
             }
+            llenarmatrizcaracol(matrizAux, m, m);
             descifrado = string.Join('┼', ListCifrado);
             descifrado = descifrado.Replace("┼", "");
             return descifrado;
@@ -71,12 +76,12 @@ namespace ED2_LABFINAL.Models.Ciphers
                 {
                     if (ListaTexto.Count() != 0)
                     {
-                        mat[fil, col] = ListaTexto.ElementAt(0);
-                        ListaTexto.RemoveAt(0);
+                        ListCifrado.Add( matriz[fil, col] );
+                        
                     }
                     else
                     {
-                        mat[fil, col] = '↔';
+                        ListCifrado.Add(matriz[fil, col]);
                     }
                 }
                 fil = m - 1 - k;
@@ -84,12 +89,12 @@ namespace ED2_LABFINAL.Models.Ciphers
                 {
                     if (ListaTexto.Count() != 0)
                     {
-                        mat[fil, col] = ListaTexto.ElementAt(0);
-                        ListaTexto.RemoveAt(0);
+                        ListCifrado.Add(matriz[fil, col]);
+
                     }
                     else
                     {
-                        mat[fil, col] = '↔';
+                        ListCifrado.Add(matriz[fil, col]);
                     }
                 }
                 col = n - 1 - k;
@@ -97,12 +102,11 @@ namespace ED2_LABFINAL.Models.Ciphers
                 {
                     if (ListaTexto.Count() != 0)
                     {
-                        mat[fil, col] = ListaTexto.ElementAt(0);
-                        ListaTexto.RemoveAt(0);
+                        ListCifrado.Add(matriz[fil, col]);
                     }
                     else
                     {
-                        mat[fil, col] = '↔';
+                        ListCifrado.Add(matriz[fil, col]);
                     }
                 }
                 fil = k;
@@ -110,12 +114,11 @@ namespace ED2_LABFINAL.Models.Ciphers
                 {
                     if (ListaTexto.Count() != 0)
                     {
-                        mat[fil, col] = ListaTexto.ElementAt(0);
-                        ListaTexto.RemoveAt(0);
+                        ListCifrado.Add(matriz[fil, col]);
                     }
                     else
                     {
-                        mat[fil, col] = '↔';
+                        ListCifrado.Add(matriz[fil, col]);
                     }
                 }
             }

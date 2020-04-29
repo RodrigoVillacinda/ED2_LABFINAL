@@ -60,7 +60,10 @@ namespace ED2_LABFINAL.Controllers
             return D2_LABFINAL.Models.Btree.Data.Instance.arbol.Recorrido();
         }
 
-        [HttpGet("btree/searh/drinks {id?}")]
+       
+        /// /{id?}
+      
+        [HttpGet("btree/search/drinks")]
         public string GetDrinksId(int id)
         {
             return "value";
@@ -561,7 +564,7 @@ namespace ED2_LABFINAL.Controllers
                         Models.Asymmetric.Data.Instance.q = objFile.q;
                         Models.Asymmetric.Data.Instance.tamaño = objFile.Tamaño;
 
-                        ImplementationCaesar2.CifradoCaesar(fileStream.Name, s, Data.Instance.tamaño, Data.Instance.p, Data.Instance.q);
+                        ImplementationCaesar2.CifradoCaesar(fileStream.Name, s, Models.Asymmetric.Data.Instance.tamaño, Models.Asymmetric.Data.Instance.p, Models.Asymmetric.Data.Instance.q);
 
                         return "\\Upload\\" + objFile.files.FileName;
 
