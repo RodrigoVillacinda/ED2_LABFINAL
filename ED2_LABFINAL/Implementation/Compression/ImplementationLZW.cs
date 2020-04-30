@@ -94,7 +94,7 @@ namespace ED2_LABFINAL.Implementation.Compression
                 File.WriteAllText(@root, descomprimido);
                 RazonCompresion = Convert.ToDouble(comprimido.Length) / Convert.ToDouble(descomprimido.Length);
                 FactorCompresion = Convert.ToDouble( descomprimido.Length) / Convert.ToDouble( comprimido.Length);
-                PorcentajeCompresion = ((FactorCompresion / RazonCompresion) * 100);
+                PorcentajeCompresion = (FactorCompresion / RazonCompresion);
                 double raz = Math.Round(RazonCompresion, 2);
                 double fac = Math.Round(FactorCompresion, 2);
                 double porcent = Math.Round(PorcentajeCompresion, 2);    
