@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ED2_LABFINAL.Models.Compression
 {
 	public class LZW
-	{
+	{  
 		public static List<int> Compresion(string uncompressed)
 		{
 			

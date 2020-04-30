@@ -21,7 +21,7 @@ namespace ED2_LABFINAL.Implementation.Ciphers
             string texto = System.IO.File.ReadAllText(@path);
             RutaVertical cifrado = new RutaVertical(texto, tamaño);
             string txtcifrado = cifrado.Cifrado();
-
+            txtcifrado = txtcifrado.Replace("┼", "");
             List<char> bytecompress = new List<char>();
 
             root = root + @"\\Upload\\Vertical\\cifrado.Vertical";
@@ -47,8 +47,7 @@ namespace ED2_LABFINAL.Implementation.Ciphers
             string texto = System.IO.File.ReadAllText(@path);
             RutaVertical descifrado = new RutaVertical(texto, tamaño);
             string txtdescifrado = descifrado.Descifrado();
-            txtdescifrado.Replace("ascii 197", "");
-
+            txtdescifrado = txtdescifrado.Replace("┼", "");
             root = root + @"\\Upload\\Vertical\\descifradoVartical.txt";
             using (StreamWriter outputFile = new StreamWriter(root))
             {

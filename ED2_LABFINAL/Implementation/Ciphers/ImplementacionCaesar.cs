@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ED2_LABFINAL.Implementation.Ciphers
 {
     public class ImplementationCaesar
-    {
+    {                                                                  
         public static void Cifrado(string path, string root, string palabra)
         {
             string descomprimido = "";
@@ -21,7 +21,7 @@ namespace ED2_LABFINAL.Implementation.Ciphers
             string texto = System.IO.File.ReadAllText(@path);
             Caesar cifrado = new Caesar(palabra, texto);
             string txtcifrado = cifrado.Cifrado();
-
+            txtcifrado = txtcifrado.Replace("┼", "");
             root = root + @"\\Upload\\Caesar\\cifrado.Caesar";
             using (StreamWriter outputFile = new StreamWriter(root))
             {
@@ -45,8 +45,7 @@ namespace ED2_LABFINAL.Implementation.Ciphers
             string texto = System.IO.File.ReadAllText(@path);
             Caesar descifrado = new Caesar(palabra, texto);
             string txtdescifrado = descifrado.Descifrado();
-            txtdescifrado.Replace("ascii 197", "");
-
+            txtdescifrado = txtdescifrado.Replace("┼", "");
             root = root + @"\\Upload\\Caesar\\descifradoCaesar.txt";
             using (StreamWriter outputFile = new StreamWriter(root))
             {

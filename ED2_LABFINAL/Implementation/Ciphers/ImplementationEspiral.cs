@@ -22,7 +22,7 @@ namespace ED2_LABFINAL.Implementation.Ciphers
             string texto = System.IO.File.ReadAllText(@path);
             RutaEspiral cifrado = new RutaEspiral(texto, tamaño);
             string txtcifrado = cifrado.Cifrado();
-
+            txtcifrado = txtcifrado.Replace("┼", "");
             List<char> bytecompress = new List<char>();
 
             root = root + @"\\Upload\\Espiral\\cifrado.Espiral";
@@ -48,8 +48,7 @@ namespace ED2_LABFINAL.Implementation.Ciphers
             string texto = System.IO.File.ReadAllText(@path);
             RutaEspiral descifrado = new RutaEspiral(texto, tamaño);
             string txtdescifrado = descifrado.Descifrado();
-            txtdescifrado.Replace("ascii 197", "");
-
+            txtdescifrado = txtdescifrado.Replace("┼", "");
             root = root + @"\\Upload\\Espiral\\descifradoEspiral.txt";
             using (StreamWriter outputFile = new StreamWriter(root))
             {

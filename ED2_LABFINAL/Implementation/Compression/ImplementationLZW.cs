@@ -9,7 +9,7 @@ namespace ED2_LABFINAL.Implementation.Compression
 {
     public class ImplementationLZW
     {
-
+            private static string NombreTemporal;
             public double FactorCompresion;
             public double RazonCompresion;
             public string path = "";

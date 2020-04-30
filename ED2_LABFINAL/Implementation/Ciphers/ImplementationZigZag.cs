@@ -21,7 +21,7 @@ namespace ED2_LABFINAL.Implementation.Ciphers
             string texto = System.IO.File.ReadAllText(@path);
             ZigZagEncoded cifrado = new ZigZagEncoded(niveles, texto);
             string txtcifrado = cifrado.Cifrado();
-
+            txtcifrado = txtcifrado.Replace("┼", "");
             List<char> bytecompress = new List<char>();
 
 
@@ -46,8 +46,7 @@ namespace ED2_LABFINAL.Implementation.Ciphers
             string texto = System.IO.File.ReadAllText(@path);
             ZigZagDecoded descifrado = new ZigZagDecoded(niveles, texto);
             string txtdescifrado = descifrado.Descifrado();
-            txtdescifrado.Replace("ascii 197", "");
-
+            txtdescifrado = txtdescifrado.Replace("┼", "");
             root = root + @"\\Upload\\ZigZag\\descifradoZigZag.txt";
             using (StreamWriter outputFile = new StreamWriter(root))
             {
