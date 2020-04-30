@@ -95,7 +95,8 @@ namespace ED2_LABFINAL.Controllers
                         fileStream.Flush();
                         fileStream.Close();
                         string s = @_environment.WebRootPath;
-                        ImplementationLZW imp = new ImplementationLZW(fileStream.Name, s);
+                        string temporal = objFile.files.FileName.ToString();
+                        ImplementationLZW imp = new ImplementationLZW(fileStream.Name, s, temporal);
                         imp.Comprimir();
 
 
@@ -137,7 +138,8 @@ namespace ED2_LABFINAL.Controllers
                         fileStream.Flush();
                         fileStream.Close();
                         string s = @_environment.WebRootPath;
-                        ImplementationLZW imp = new ImplementationLZW(fileStream.Name, s);
+                        string temporal = objFile.files.FileName.ToString();
+                        ImplementationLZW imp = new ImplementationLZW(fileStream.Name, s, temporal);
                         imp.Descomprimir();
                         return "\\Upload\\" + objFile.files.FileName;
 

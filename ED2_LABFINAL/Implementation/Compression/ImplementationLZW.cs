@@ -12,13 +12,15 @@ namespace ED2_LABFINAL.Implementation.Compression
             private static string NombreTemporal;
             public double FactorCompresion;
             public double RazonCompresion;
+            public double PorcentajeCompresion;
             public string path = "";
-            public string root = "";
-
-            public ImplementationLZW(string path, string root)
+            public string root = ""; 
+            
+            public ImplementationLZW(string path, string root, string temporal)
             {
                 this.path = path;
                 this.root = root;
+                NombreTemporal = temporal;
             }
 
             public void Comprimir()
@@ -38,7 +40,8 @@ namespace ED2_LABFINAL.Implementation.Compression
                 {
                     bytecompress.Add((char)numero);
                 }
-                root = root + @"\\Upload\\Compresion\\comprimido.lzw";
+                NombreTemporal = NombreTemporal.Replace(".txt","");
+                root = root + @"\\Upload\\Compresion\\" + NombreTemporal +"compresion" + ".lzw";
                 
                 using (StreamWriter outputFile = new StreamWriter(root))
                 {
@@ -86,16 +89,19 @@ namespace ED2_LABFINAL.Implementation.Compression
 
                 descomprimido = LZW.Descompresion(bytedecompress);
                 string rootRazonFactor = root;
-                root = root + @"\\Upload\\Compresion\\decomprimidoLZW.txt";
+                NombreTemporal = NombreTemporal.Replace(".lzw", "");
+                root = root + @"\\Upload\\Compresion\\" + NombreTemporal + ".txt";
                 File.WriteAllText(@root, descomprimido);
                 RazonCompresion = Convert.ToDouble(comprimido.Length) / Convert.ToDouble(descomprimido.Length);
                 FactorCompresion = Convert.ToDouble( descomprimido.Length) / Convert.ToDouble( comprimido.Length);
+                PorcentajeCompresion = ((FactorCompresion / RazonCompresion) * 100);
                 double raz = Math.Round(RazonCompresion, 2);
                 double fac = Math.Round(FactorCompresion, 2);
+                double porcent = Math.Round(PorcentajeCompresion, 2);    
                 rootRazonFactor = rootRazonFactor + @"\\Upload\\Compresion\\FactorRazon.txt";
-                File.WriteAllText(@rootRazonFactor, "Razon de compresión: " + raz.ToString() + Environment.NewLine + 
-                "Factor de compresión: " + fac.ToString());
-              
+                File.WriteAllText(@rootRazonFactor, "Razon de compresión: " + raz.ToString() + Environment.NewLine + "Factor de compresión: " + fac.ToString() + Environment.NewLine + "Porcentaje de compresión: " + porcent.ToString());
+                
+
             }
 
 
