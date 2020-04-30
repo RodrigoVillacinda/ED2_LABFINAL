@@ -92,14 +92,14 @@ namespace ED2_LABFINAL.Implementation.Compression
                 NombreTemporal = NombreTemporal.Replace(".lzw", "");
                 root = root + @"\\Upload\\Compresion\\" + NombreTemporal + ".txt";
                 File.WriteAllText(@root, descomprimido);
-                RazonCompresion = Convert.ToDouble(comprimido.Length) / Convert.ToDouble(descomprimido.Length);
-                FactorCompresion = Convert.ToDouble( descomprimido.Length) / Convert.ToDouble( comprimido.Length);
-                PorcentajeCompresion = (FactorCompresion / RazonCompresion);
+                FactorCompresion = Convert.ToDouble(comprimido.Length) / Convert.ToDouble(descomprimido.Length);
+                RazonCompresion = Convert.ToDouble( descomprimido.Length) / Convert.ToDouble( comprimido.Length);
+                PorcentajeCompresion = ((FactorCompresion / RazonCompresion)*100);
                 double raz = Math.Round(RazonCompresion, 2);
                 double fac = Math.Round(FactorCompresion, 2);
                 double porcent = Math.Round(PorcentajeCompresion, 2);    
                 rootRazonFactor = rootRazonFactor + @"\\Upload\\Compresion\\FactorRazon.txt";
-                File.WriteAllText(@rootRazonFactor, "Razon de compresión: " + raz.ToString() + Environment.NewLine + "Factor de compresión: " + fac.ToString() + Environment.NewLine + "Porcentaje de compresión: " + porcent.ToString());
+                File.WriteAllText(@rootRazonFactor, "Razon de compresión: " + raz.ToString() + Environment.NewLine + "Factor de compresión: " + fac.ToString() + Environment.NewLine + "Porcentaje de compresión: " + porcent.ToString() + "%");
                 
 
             }

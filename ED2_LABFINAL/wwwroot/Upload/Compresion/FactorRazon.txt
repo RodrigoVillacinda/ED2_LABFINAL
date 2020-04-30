@@ -1,3 +1,0 @@
-Razon de compresión: 0.53
-Factor de compresión: 1.88
-Porcentaje de compresión: 353.66
