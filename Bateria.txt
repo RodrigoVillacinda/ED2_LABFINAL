@@ -1,0 +1,57 @@
+Laboratorio 0
+	Ruta mostrar lista: localhost:59024/Labs/list/peek/movie
+	Ruta insertar: localhost:59024/Labs/list/insert/movie
+	Body->Raw->Json
+	json:
+		{
+			"MovieName": "20 años",
+			"Year": 2019,
+			"Director": "Polanski"		
+		}
+Laboratorio 1
+	Ruta mostrar lista: localhost:59024/Labs/btree/peek/bebidas
+	Ruta mostrar especifico: localhost:59024/Labs/btree/peek/bebidas
+	Ruta insertar: localhost:59024/Labs/btree/insert/drinks
+	Body->Raw->Json
+	json:
+		{
+			"MovieName": "20 años",
+			"Year": 2019,
+			"Director": "Polanski"		
+		}
+Laboratorio 4
+	Ruta compresión lzw: localhost:59024/Labs/compression/compress/lzw
+	Ruta descompres lzw: localhost:59024/Labs/compression/decompress/lzw
+	Body->formdata
+		key: files	value: select file
+Laboratorio 5
+	Ruta cifrado zigzag: localhost:59024/Labs/cif/cipher/zigzag
+	Ruta descifrados zigzaf: localhost:59024/Labs/cif/decipher/zigzag
+	Body->formdata
+		key: files	value: select file
+		Key: TamañoCarriles	value: (entero) número
+
+	Ruta cifrado caesar: localhost:59024/Labs/cif/cipher/caesar
+	Ruta descifrados caesar: localhost:59024/Labs/cif/decipher/caesar
+	Body->formdata
+		key: files	value: select file
+		Key: Palabra	value: (texto) palabra
+
+	Ruta cifrado vertical: localhost:59024/Labs/cif/cipher/vertical
+	Ruta descifrados vertical: localhost:59024/Labs/cif/decipher/vertical
+	Body->formdata
+		key: files	value: select file
+		Key: Tamaño	value: (entero) número
+	Ruta cifrado espiral: localhost:59024/Labs/cif/cipher/espiral
+	Ruta descifrados espiral: localhost:59024/Labs/cif/decipher/espiral
+	Body->formdata
+		key: files	value: select file
+		Key: Tamaño	value: (entero) número
+Laboratorio 6
+	Ruta cifrado vertical: localhost:59024/Labs/asymmetric/cipher/keypublic
+	Ruta descifrados vertical: localhost:59024/Labs/asymmetric/decipher/caesar2
+	Body->formdata
+		key: files	value: select file
+		Key: Tamaño	value: (entero) número
+		Key: p		value: (entero) número
+		Key: q		value: (entero) número
