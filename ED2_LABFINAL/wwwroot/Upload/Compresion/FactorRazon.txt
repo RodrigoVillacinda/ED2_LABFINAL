@@ -1,0 +1,2 @@
+Razon de compresión: 0.42
+Factor de compresión: 2.4

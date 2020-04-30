@@ -11,13 +11,18 @@ namespace ED2_LABFINAL.Implementation.Ciphers
     {
         public static void Cifrado(string path, string root, string palabra)
         {
+            string descomprimido = "";
+            string directorio;
+            directorio = root + @"\\Upload\\";
+            if (!Directory.Exists(directorio + "\\Caesar\\"))
+            {
+                DirectoryInfo di = Directory.CreateDirectory(directorio + "\\Caesar\\");
+            }
             string texto = System.IO.File.ReadAllText(@path);
             Caesar cifrado = new Caesar(palabra, texto);
             string txtcifrado = cifrado.Cifrado();
 
-            List<char> bytecompress = new List<char>();
-
-            root = root + @"\\Upload\\cifrado.Caesar";
+            root = root + @"\\Upload\\Caesar\\cifrado.Caesar";
             using (StreamWriter outputFile = new StreamWriter(root))
             {
                 foreach (char caracter in txtcifrado)
@@ -30,12 +35,19 @@ namespace ED2_LABFINAL.Implementation.Ciphers
 
         public static void Descifrado(string path, string root, string palabra)
         {
+            string descomprimido = "";
+            string directorio;
+            directorio = root + @"\\Upload\\";
+            if (!Directory.Exists(directorio + "\\Caesar\\"))
+            {
+                DirectoryInfo di = Directory.CreateDirectory(directorio + "\\Caesar\\");
+            }
             string texto = System.IO.File.ReadAllText(@path);
             Caesar descifrado = new Caesar(palabra, texto);
             string txtdescifrado = descifrado.Descifrado();
             txtdescifrado.Replace("ascii 197", "");
 
-            root = root + @"\\Upload\\descifradoCaesar.txt";
+            root = root + @"\\Upload\\Caesar\\descifradoCaesar.txt";
             using (StreamWriter outputFile = new StreamWriter(root))
             {
                 foreach (char caracter in txtdescifrado)

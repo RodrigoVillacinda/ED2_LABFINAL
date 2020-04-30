@@ -11,6 +11,13 @@ namespace ED2_LABFINAL.Implementation.Asymmetric
     {
         public static void Cifrado(string path, string root, int tamaño, int p, int q)
         {
+            string descomprimido = "";
+            string directorio;
+            directorio = root + @"\\Upload\\";
+            if (!Directory.Exists(directorio + "\\Asymmetric\\"))
+            {
+                DirectoryInfo di = Directory.CreateDirectory(directorio + "\\Asymmetric\\");
+            }
             DiffieHellman dh = new DiffieHellman(p, tamaño);
             RSA rsa = new RSA(p, q);
             string texto = System.IO.File.ReadAllText(@path);
@@ -23,7 +30,7 @@ namespace ED2_LABFINAL.Implementation.Asymmetric
              " " + Environment.NewLine + "Cipher: Diffie-Hellman" + Environment.NewLine + "Clave pública: " +
              " ( " + dh.SetAlice() + " )";
 
-            root = root + @"\\Upload\\KeysPublics.txt";
+            root = root + @"\\Upload\\Asymmetric\\KeysPublics.txt";
             using (StreamWriter outputFile = new StreamWriter(root))
             {
                 foreach (char caracter in txtcifrado)
@@ -36,6 +43,13 @@ namespace ED2_LABFINAL.Implementation.Asymmetric
 
         public static void CifradoCaesar(string path, string root, int tamaño, int p, int q)
         {
+            string descomprimido = "";
+            string directorio;
+            directorio = root + @"\\Upload\\";
+            if (!Directory.Exists(directorio + "\\Asymmetric\\"))
+            {
+                DirectoryInfo di = Directory.CreateDirectory(directorio + "\\Asymmetric\\");
+            }
             DiffieHellman dh = new DiffieHellman(p, tamaño);
             RSA rsa = new RSA(p, q);
             string rootdh = root;
@@ -47,7 +61,7 @@ namespace ED2_LABFINAL.Implementation.Asymmetric
             int tamañocifrado = rsa.encriptar(tamaño);
             Caesar2 caesar = new Caesar2(tamañocifrado, texto);
             string txtcifrado = caesar.Cifrado();
-            root = root + @"\\Upload\\Caesar2.rsa";
+            root = root + @"\\Upload\\Asymmetric\\Caesar2.rsa";
             using (StreamWriter outputFile = new StreamWriter(root))
             {
                 foreach (char caracter in txtcifrado)
@@ -59,7 +73,7 @@ namespace ED2_LABFINAL.Implementation.Asymmetric
             int tamañoDH = Int32.Parse(dh.SetSecretKey());
             Caesar2 caesar2 = new Caesar2(tamañoDH, texto);
             txtcifradoDH = caesar2.Cifrado();
-            rootdh = rootdh + @"\\Upload\\Caesar2.dh";
+            rootdh = rootdh + @"\\Upload\\Asymmetric\\Caesar2.dh";
             using (StreamWriter outputFile = new StreamWriter(rootdh))
             {
                 foreach (char caracter in txtcifradoDH)

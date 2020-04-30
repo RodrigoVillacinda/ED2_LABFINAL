@@ -10,8 +10,8 @@ namespace ED2_LABFINAL.Implementation.Compression
     public class ImplementationLZW
     {
 
-      
-
+            public double FactorCompresion;
+            public double RazonCompresion;
             public string path = "";
             public string root = "";
 
@@ -23,6 +23,12 @@ namespace ED2_LABFINAL.Implementation.Compression
 
             public void Comprimir()
             {
+                string directorio;
+                directorio = root + @"\\Upload\\";
+                if (!Directory.Exists(directorio + "\\Compresion\\"))
+                {
+                    DirectoryInfo di = Directory.CreateDirectory(directorio + "\\Compresion\\");
+                }
                 List<int> comprimido = new List<int>();
                 string text = System.IO.File.ReadAllText(@path);
                 comprimido = LZW.Compresion(text);
@@ -32,7 +38,8 @@ namespace ED2_LABFINAL.Implementation.Compression
                 {
                     bytecompress.Add((char)numero);
                 }
-                root = root + @"\\Upload\\comprimido.lzw";
+                root = root + @"\\Upload\\Compresion\\comprimido.lzw";
+                
                 using (StreamWriter outputFile = new StreamWriter(root))
                 {
                     foreach (char caracter in bytecompress)
@@ -40,12 +47,19 @@ namespace ED2_LABFINAL.Implementation.Compression
                         outputFile.Write(caracter.ToString());
                     }
                 }
-            }
+               
+        }
 
             public void Descomprimir()
             {
                 string descomprimido = "";
-
+                string directorio;
+                directorio = root + @"\\Upload\\";
+                if (!Directory.Exists(directorio + "\\Compresion\\"))
+                {
+                    DirectoryInfo di = Directory.CreateDirectory(directorio + "\\Compresion\\");
+                }
+                string comprimido = System.IO.File.ReadAllText(@path);
                 const int bufferLength = 100;
                 List<int> bytedecompress = new List<int>();
 
@@ -71,11 +85,19 @@ namespace ED2_LABFINAL.Implementation.Compression
                 }
 
                 descomprimido = LZW.Descompresion(bytedecompress);
-                root = root + @"\\Upload\\decomprimidoLZW.txt";
+                string rootRazonFactor = root;
+                root = root + @"\\Upload\\Compresion\\decomprimidoLZW.txt";
                 File.WriteAllText(@root, descomprimido);
-                int a = 0;
+                RazonCompresion = Convert.ToDouble(comprimido.Length) / Convert.ToDouble(descomprimido.Length);
+                FactorCompresion = Convert.ToDouble( descomprimido.Length) / Convert.ToDouble( comprimido.Length);
+                double raz = Math.Round(RazonCompresion, 2);
+                double fac = Math.Round(FactorCompresion, 2);
+                rootRazonFactor = rootRazonFactor + @"\\Upload\\Compresion\\FactorRazon.txt";
+                File.WriteAllText(@rootRazonFactor, "Razon de compresión: " + raz.ToString() + Environment.NewLine + 
+                "Factor de compresión: " + fac.ToString());
+              
             }
-        
+
 
     }
 }

@@ -60,9 +60,7 @@ namespace ED2_LABFINAL.Controllers
             return D2_LABFINAL.Models.Btree.Data.Instance.arbol.Recorrido();
         }
 
-       
-        /// /{id?}
-      
+        /// /{id?} 
         [HttpGet("btree/search/drinks")]
         public string GetDrinksId(int id)
         {
@@ -104,7 +102,6 @@ namespace ED2_LABFINAL.Controllers
                         return "\\Upload\\" + objFile.files.FileName;
 
                     }
-
 
                 }
                 else
@@ -165,7 +162,7 @@ namespace ED2_LABFINAL.Controllers
         //FinLaboratorio4----------------
 
         //FinLaboratorio5----------------
-        [HttpPost("cif/cipher/ZigZag")]
+        [HttpPost("cif/cipher/zigzag")]
         public async Task<string> postCipherZZ([FromForm]UploadDataZigZag objFile)
         {
 
@@ -207,7 +204,7 @@ namespace ED2_LABFINAL.Controllers
 
         }
 
-        [HttpPost("cif/decipher/ZigZag")]
+        [HttpPost("cif/decipher/zigzag")]
         public async Task<string> postDecipherZZ([FromForm]UploadDataZigZag objFile)
         {
 
@@ -250,7 +247,7 @@ namespace ED2_LABFINAL.Controllers
 
         }
 
-        [HttpPost("cif/cipher/Caesar")]
+        [HttpPost("cif/cipher/caesar")]
         public async Task<string> postCipherCaeser([FromForm]UploadDataZigZag objFile)
         {
 
@@ -274,8 +271,6 @@ namespace ED2_LABFINAL.Controllers
                         return "\\Upload\\" + objFile.files.FileName;
 
                     }
-
-
                 }
                 else
                 {
@@ -292,7 +287,7 @@ namespace ED2_LABFINAL.Controllers
 
         }
 
-        [HttpPost("cif/decipher/Caesar")]
+        [HttpPost("cif/decipher/caesar")]
         public async Task<string> postDecipherCaesar([FromForm]UploadDataZigZag objFile)
         {
 
@@ -335,7 +330,7 @@ namespace ED2_LABFINAL.Controllers
 
         }
 
-        [HttpPost("cif/cipher/Vertical")]
+        [HttpPost("cif/cipher/vertical")]
         public async Task<string> postCipherVertical([FromForm]UploadDataZigZag objFile)
         {
 
@@ -377,7 +372,7 @@ namespace ED2_LABFINAL.Controllers
 
         }
 
-        [HttpPost("cif/decipher/Vertical")]
+        [HttpPost("cif/decipher/vertical")]
         public async Task<string> postDecipherVertical([FromForm]UploadDataZigZag objFile)
         {
 
@@ -420,7 +415,7 @@ namespace ED2_LABFINAL.Controllers
 
         }
 
-        [HttpPost("cif/cipher/Espiral")]
+        [HttpPost("cif/cipher/espiral")]
         public async Task<string> postCipherEspiral([FromForm]UploadDataZigZag objFile)
         {
 
@@ -462,7 +457,7 @@ namespace ED2_LABFINAL.Controllers
 
         }
 
-        [HttpPost("cif/decipher/Espiral")]
+        [HttpPost("cif/decipher/espiral")]
         public async Task<string> postDecipherEspiral([FromForm]UploadDataZigZag objFile)
         {
 
@@ -542,7 +537,7 @@ namespace ED2_LABFINAL.Controllers
 
         }
 
-        [HttpPost("asymmetric/cipher/caesar")]
+        [HttpPost("asymmetric/cipher/caesar2")]
         public async Task<string> postCipher([FromForm]UploadDataCipher objFile)
         {
 

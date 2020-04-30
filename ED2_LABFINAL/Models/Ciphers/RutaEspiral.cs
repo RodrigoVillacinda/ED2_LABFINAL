@@ -59,13 +59,13 @@ namespace ED2_LABFINAL.Models.Ciphers
                     //ListCifrado.Add(matriz[j, i]);
                 }
             }
-            llenarmatrizcaracol(matrizAux, m, m);
+            llenarmatrizcaracolDesc(matrizAux, m, m);
             descifrado = string.Join('┼', ListCifrado);
             descifrado = descifrado.Replace("┼", "");
             return descifrado;
 
         }
-        public void llenarmatrizcaracol(char[,] mat, int n, int m)
+        public void llenarmatrizcaracolDesc(char[,] mat, int n, int m)
         {
             int fil, col, aux, cont, k;
             cont = 1;
@@ -119,6 +119,68 @@ namespace ED2_LABFINAL.Models.Ciphers
                     else
                     {
                         ListCifrado.Add(matriz[fil, col]);
+                    }
+                }
+            }
+            return;
+        }
+
+        public void llenarmatrizcaracol(char[,] mat, int n, int m)
+        {
+            int fil, col, aux, cont, k;
+            cont = 1;
+            for (k = 0; k < m; k++)
+            {
+                col = k;
+                for (fil = k; fil <= (m - 1 - k); fil++)
+                {
+                    if (ListaTexto.Count() != 0)
+                    {
+                        mat[fil, col] = ListaTexto.ElementAt(0);
+                        ListaTexto.RemoveAt(0);
+                    }
+                    else
+                    {
+                        mat[fil, col] = '↔';
+                    }
+                }
+                fil = m - 1 - k;
+                for (col = k + 1; col <= n - 1 - k; col++)
+                {
+                    if (ListaTexto.Count() != 0)
+                    {
+                        mat[fil, col] = ListaTexto.ElementAt(0);
+                        ListaTexto.RemoveAt(0);
+                    }
+                    else
+                    {
+                        mat[fil, col] = '↔';
+                    }
+                }
+                col = n - 1 - k;
+                for (fil = m - 2 - k; fil >= k; fil--)
+                {
+                    if (ListaTexto.Count() != 0)
+                    {
+                        mat[fil, col] = ListaTexto.ElementAt(0);
+                        ListaTexto.RemoveAt(0);
+                    }
+                    else
+                    {
+                        mat[fil, col] = '↔';
+                    }
+                }
+                fil = k;
+                for (col = n - 2 - k; col >= k + 1; col--)
+                {
+                    if (ListaTexto.Count() != 0)
+                    {
+                        mat[fil, col] = ListaTexto.ElementAt(0);
+                        ListaTexto.RemoveAt(0);
+                    }
+                    else
+                    {
+                        mat[fil, col] = '↔';
                     }
                 }
             }
