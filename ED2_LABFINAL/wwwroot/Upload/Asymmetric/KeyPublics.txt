@@ -1,0 +1,5 @@
+Cipher: RSA
+Clave pública: ( 143 , 47 )
+ 
+Cipher: Diffie-Hellman
+Clave pública:  ( 60 )

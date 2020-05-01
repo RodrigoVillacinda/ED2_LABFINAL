@@ -9,15 +9,17 @@ Laboratorio 0
 			"Director": "Polanski"		
 		}
 Laboratorio 1
-	Ruta mostrar lista: localhost:59024/Labs/btree/peek/bebidas
-	Ruta mostrar especifico: localhost:59024/Labs/btree/peek/bebidas
+	Ruta mostrar lista: localhost:59024/Labs/btree/peek/drinks
+	Ruta mostrar especifico: localhost:59024/Labs/btree/peek/drinks
 	Ruta insertar: localhost:59024/Labs/btree/insert/drinks
 	Body->Raw->Json
 	json:
 		{
-			"MovieName": "20 años",
-			"Year": 2019,
-			"Director": "Polanski"		
+			"Nombre": "Pepsi",
+			"Sabor": "Cola",
+			"Volumen": 2,
+			"Precio": 2.0,
+			"Casa": "Pep"
 		}
 Laboratorio 4
 	Ruta compresión lzw: localhost:59024/Labs/compression/compress/lzw
@@ -48,10 +50,16 @@ Laboratorio 5
 		key: files	value: select file
 		Key: Tamaño	value: (entero) número
 Laboratorio 6
-	Ruta cifrado vertical: localhost:59024/Labs/asymmetric/cipher/keypublic
-	Ruta descifrados vertical: localhost:59024/Labs/asymmetric/decipher/caesar2
+	Ruta cifrado llave: localhost:59024/Labs/asymmetric/cipher/keypublic
+	Ruta cifrado caesar2: localhost:59024/Labs/asymmetric/cipher/caesar2
 	Body->formdata
 		key: files	value: select file
 		Key: Tamaño	value: (entero) número
 		Key: p		value: (entero) número
 		Key: q		value: (entero) número
+	Ruta cifrado keys: localhost:59024/Labs/asymmetric/decipher/keys
+		key: CipherKeyRSA	value: select file
+		key: CipherKeyDH	value: select file
+		Key: c			value: (entero) número
+		Key: d			value: (entero) número
+		Key: n			value: (entero) número

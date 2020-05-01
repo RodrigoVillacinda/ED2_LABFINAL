@@ -10,8 +10,13 @@ namespace ED2_LABFINAL.Interface
     {
 
         IFormFile files { get; set; }
+        IFormFile CipherKeyRSA { get; set; }
+        IFormFile CipherKeyDH { get; set; }
         int p { get; set; }
         int q { get; set; }
         int Tamaño { get; set; }
+        int c { get; set; }
+        int d { get; set; }
+        int n { get; set; }
     }
 }

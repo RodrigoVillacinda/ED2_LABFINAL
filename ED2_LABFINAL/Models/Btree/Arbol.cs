@@ -17,6 +17,7 @@ namespace ED2_LABFINAL.Models.Btree
         public Nodo<T> Raiz { get; set; }
         private static bool Vacio { get; set; }
         private static bool Lleno { get; set; }
+        List<T> Listado = new List<T>();
 
         public void Insertar(List<T> valores)
         {
@@ -111,6 +112,33 @@ namespace ED2_LABFINAL.Models.Btree
             }
 
             return lista;
+        }
+
+        private void RecorridoInorder(Nodo<T> NodoArbol)
+        {
+           
+            if (NodoArbol !=null && NodoArbol.Children.Count !=0)
+            {
+                RecorridoInorder(NodoArbol.Children[0]);
+                for (int i = 1; i <NodoArbol.Children.Count(); i++)
+                {
+
+                    Listado.Add(NodoArbol.Values.ElementAt(i-1));
+                    
+                    RecorridoInorder(NodoArbol.Children[i]);
+                }
+            }
+            else
+            {
+                Listado.Add(NodoArbol.Values.ElementAt(0));
+            }
+           
+        }
+        public List<T> ConvertirALista()
+        {
+           
+            RecorridoInorder(Raiz);
+            return Listado;
         }
 
     }

@@ -8,6 +8,7 @@ using ED2_LABFINAL.Implementation.Asymmetric;
 using ED2_LABFINAL.Implementation.Ciphers;
 using ED2_LABFINAL.Implementation.Compression;
 using ED2_LABFINAL.Interface;
+using ED2_LABFINAL.Models.Btree;
 using ED2_LABFINAL.Models.List;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -21,6 +22,7 @@ namespace ED2_LABFINAL.Controllers
     public class LabsController : ControllerBase
     {
         public static IWebHostEnvironment _environment;
+        
         public LabsController(IWebHostEnvironment environment)
         {
             _environment = environment;
@@ -57,14 +59,23 @@ namespace ED2_LABFINAL.Controllers
         public IEnumerable<Bebidas> GetDrinks()
         {
 
-            return D2_LABFINAL.Models.Btree.Data.Instance.arbol.Recorrido();
+            return D2_LABFINAL.Models.Btree.Data.Instance.arbol.ConvertirALista();
         }
 
         /// /{id?} 
-        [HttpGet("btree/search/drinks")]
-        public string GetDrinksId(int id)
+        [HttpGet("btree/search/drinks/{id?}")]
+        public IEnumerable<Bebidas> GetDrinksId(string id)
         {
-            return "value";
+            if (id != null)
+            {
+                return D2_LABFINAL.Models.Btree.Data.Instance.arbol.ConvertirALista().FindAll(data => data.Nombre == id);
+            }
+            else
+            {
+                return D2_LABFINAL.Models.Btree.Data.Instance.arbol.ConvertirALista();
+            }
+            
+            
         }
 
         [HttpPost("btree/insert/drinks")]
@@ -541,6 +552,49 @@ namespace ED2_LABFINAL.Controllers
 
         [HttpPost("asymmetric/cipher/caesar2")]
         public async Task<string> postCipher([FromForm]UploadDataCipher objFile)
+        {
+
+            try
+            {
+                if (objFile.files.Length > 0)
+                {
+                    if (!Directory.Exists(_environment.WebRootPath + "\\Upload\\"))
+                    {
+                        Directory.CreateDirectory(_environment.WebRootPath + "\\Upload\\");
+                    }
+                    using (FileStream fileStream = System.IO.File.Create(_environment.WebRootPath + "\\Upload\\" + objFile.files.FileName))
+                    {
+                        objFile.files.CopyTo(fileStream);
+                        fileStream.Flush();
+                        fileStream.Close();
+                        string s = @_environment.WebRootPath;
+                        Models.Asymmetric.Data.Instance.p = objFile.p;
+                        Models.Asymmetric.Data.Instance.q = objFile.q;
+                        Models.Asymmetric.Data.Instance.tamaño = objFile.Tamaño;
+
+                        ImplementationCaesar2.CifradoCaesar(fileStream.Name, s, Models.Asymmetric.Data.Instance.tamaño, Models.Asymmetric.Data.Instance.p, Models.Asymmetric.Data.Instance.q);
+
+                        return "\\Upload\\" + objFile.files.FileName;
+
+                    }
+
+
+                }
+                else
+                {
+                    return "Failed";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return ex.Message.ToString();
+            }
+
+
+
+        }
+        public async Task<string> postDecipher([FromForm]UploadDataCipher objFile)
         {
 
             try
