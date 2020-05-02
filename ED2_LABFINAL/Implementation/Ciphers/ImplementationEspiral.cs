@@ -20,8 +20,7 @@ namespace ED2_LABFINAL.Implementation.Ciphers
                 DirectoryInfo di = Directory.CreateDirectory(directorio + "\\Espiral\\");
             }
             string texto = System.IO.File.ReadAllText(@path);
-            //RutaEspiral cifrado = new RutaEspiral(texto, tamaño);
-            Espiral cifrado = new Espiral(texto, tamaño);
+            RutaEspiral cifrado = new RutaEspiral(texto, tamaño);
             string txtcifrado = cifrado.Cifrado();
             txtcifrado = txtcifrado.Replace("┼", "");
             List<char> bytecompress = new List<char>();
@@ -47,8 +46,7 @@ namespace ED2_LABFINAL.Implementation.Ciphers
                 DirectoryInfo di = Directory.CreateDirectory(directorio + "\\Espiral\\");
             }
             string texto = System.IO.File.ReadAllText(@path);
-            //RutaEspiral descifrado = new RutaEspiral(texto, tamaño);
-            Espiral descifrado = new Espiral(texto, tamaño);
+            RutaEspiral descifrado = new RutaEspiral(texto, tamaño);
             string txtdescifrado = descifrado.Descifrado();
             txtdescifrado = txtdescifrado.Replace("┼", "");
             txtdescifrado = txtdescifrado.Replace("↔", "");
