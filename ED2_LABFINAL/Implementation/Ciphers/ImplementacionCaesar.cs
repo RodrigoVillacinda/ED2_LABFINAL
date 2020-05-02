@@ -46,6 +46,7 @@ namespace ED2_LABFINAL.Implementation.Ciphers
             Caesar descifrado = new Caesar(palabra, texto);
             string txtdescifrado = descifrado.Descifrado();
             txtdescifrado = txtdescifrado.Replace("┼", "");
+            txtdescifrado = txtdescifrado.Replace("↔", "");
             root = root + @"\\Upload\\Caesar\\descifradoCaesar.txt";
             using (StreamWriter outputFile = new StreamWriter(root))
             {

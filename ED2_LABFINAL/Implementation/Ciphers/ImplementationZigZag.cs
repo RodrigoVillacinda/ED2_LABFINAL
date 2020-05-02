@@ -48,6 +48,7 @@ namespace ED2_LABFINAL.Implementation.Ciphers
             string txtdescifrado = descifrado.Descifrado();
             txtdescifrado = txtdescifrado.Replace("┼", "");
             root = root + @"\\Upload\\ZigZag\\descifradoZigZag.txt";
+            txtdescifrado = txtdescifrado.Replace("↔", "");
             using (StreamWriter outputFile = new StreamWriter(root))
             {
                 foreach (char caracter in txtdescifrado)

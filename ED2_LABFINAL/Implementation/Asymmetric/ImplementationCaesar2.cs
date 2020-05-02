@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Numerics;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ED2_LABFINAL.Implementation.Asymmetric
@@ -91,5 +93,34 @@ namespace ED2_LABFINAL.Implementation.Asymmetric
 
         }
 
+        public static void DesCifradoKeys(string path, string root, int d, int n)
+        {
+            string descifradoRSA = "";
+            string directorio;
+            string texto = System.IO.File.ReadAllText(@path);
+            directorio = root + @"\\Upload\\";
+            if (!Directory.Exists(directorio + "\\Asymmetric\\"))
+            {
+                DirectoryInfo di = Directory.CreateDirectory(directorio + "\\Asymmetric\\");
+            }
+           
+         
+            descifradoRSA = root;
+            string cifrado = "";
+            cifrado = desencriptar(Int32.Parse( texto),d,n);
+            descifradoRSA = descifradoRSA + @"\\Upload\\Asymmetric\\LLaveDescifrada.txt";
+            File.WriteAllText(@descifradoRSA, cifrado);
+     
+
+        }
+
+        public static string desencriptar(int cif, int d, int N)
+        {
+            string res = "";
+            BigInteger n = BigInteger.ModPow(cif, d, N);
+            res = n.ToString();
+            return res;
+        }
+       
     }
 }

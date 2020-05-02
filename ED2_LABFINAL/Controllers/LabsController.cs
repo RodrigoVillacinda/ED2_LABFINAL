@@ -594,6 +594,7 @@ namespace ED2_LABFINAL.Controllers
 
 
         }
+        [HttpPost("asymmetric/decipher/keys")]
         public async Task<string> postDecipher([FromForm]UploadDataCipher objFile)
         {
 
@@ -611,11 +612,11 @@ namespace ED2_LABFINAL.Controllers
                         fileStream.Flush();
                         fileStream.Close();
                         string s = @_environment.WebRootPath;
-                        Models.Asymmetric.Data.Instance.p = objFile.p;
-                        Models.Asymmetric.Data.Instance.q = objFile.q;
+                        Models.Asymmetric.Data.Instance.p = objFile.d;
+                        Models.Asymmetric.Data.Instance.q = objFile.n;
                         Models.Asymmetric.Data.Instance.tamaño = objFile.Tamaño;
 
-                        ImplementationCaesar2.CifradoCaesar(fileStream.Name, s, Models.Asymmetric.Data.Instance.tamaño, Models.Asymmetric.Data.Instance.p, Models.Asymmetric.Data.Instance.q);
+                        ImplementationCaesar2.DesCifradoKeys(fileStream.Name, s, objFile.d,objFile.n);
 
                         return "\\Upload\\" + objFile.files.FileName;
 

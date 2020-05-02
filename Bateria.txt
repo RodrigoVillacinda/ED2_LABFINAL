@@ -60,6 +60,5 @@ Laboratorio 6
 	Ruta cifrado keys: localhost:59024/Labs/asymmetric/decipher/keys
 		key: CipherKeyRSA	value: select file
 		key: CipherKeyDH	value: select file
-		Key: c			value: (entero) número
 		Key: d			value: (entero) número
 		Key: n			value: (entero) número

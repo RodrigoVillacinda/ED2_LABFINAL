@@ -49,6 +49,7 @@ namespace ED2_LABFINAL.Implementation.Ciphers
             RutaEspiral descifrado = new RutaEspiral(texto, tamaño);
             string txtdescifrado = descifrado.Descifrado();
             txtdescifrado = txtdescifrado.Replace("┼", "");
+            txtdescifrado = txtdescifrado.Replace("↔", "");
             root = root + @"\\Upload\\Espiral\\descifradoEspiral.txt";
             using (StreamWriter outputFile = new StreamWriter(root))
             {
